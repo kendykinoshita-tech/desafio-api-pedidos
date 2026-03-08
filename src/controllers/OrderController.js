@@ -1,7 +1,23 @@
 const Order = require('../models/Order');
 const Item = require('../models/Item');
 
+//Autenticação
+const jwt = require('jsonwebtoken');
+const SECRET = 'chave'; 
+
 module.exports = {
+  async login(req, res) {
+      const { user, password } = req.body;
+
+      // Simulação de usuário (em um sistema real, buscaria no banco)
+      if (user === 'admin' && password === '123') {
+        const token = jwt.sign({ userId: 1 }, SECRET, { expiresIn: '1h' });
+        return res.json({ auth: true, token: token });
+      }
+
+      return res.status(401).json({ message: 'Usuário ou senha inválidos' });
+    },
+
   //Criar um novo pedido
   async store(req, res) {
     try {
