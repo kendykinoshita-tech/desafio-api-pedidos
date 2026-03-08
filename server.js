@@ -49,5 +49,5 @@ app.put('/order/:id', verifyJWT, OrderController.update);
 app.delete('/order/:id', verifyJWT, OrderController.delete);
 
 sequelize.sync().then(() => {
-  app.listen(3000, () => console.log('🚀 Servidor rodando na porta 3000 com JWT'));
+  app.listen(3000, () => console.log('Porta 3000 com JWT'));
 });
